@@ -1,0 +1,44 @@
+﻿@model WEB_Project.Models.EF.Subscribe
+
+<div class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+                    <h4 style="padding-bottom:10px">Đăng kí nhận thông báo</h4>
+                    <p style=" font-family: 'Roboto', sans-serif; font-size:15px">Hãy đăng kí để được nhận thông báo chương trình khuyến mãi sớm nhất</p>
+
+                </div>
+                @using (Ajax.BeginForm("Subscribe", "Home", new AjaxOptions
+                {
+                    OnBegin = "OnBeginSub",
+                    OnSuccess = "OnSuccessSub",
+                    OnFailure = "OnFailureSub"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <script>
+                        function OnBeginSub() {
+
+                        }
+                        function OnSuccessSub(rs) {
+                            if (rs.Success) {
+                                alert("Cảm ơn bạn đã đăng kí thông báo!");
+                            }
+                        }
+                        function OnFailureSub(rs) { }
+                    </script>
+                    <div style="float:left" class=" newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        @*@Html.TextBoxFor(x => x.Email, new {})*@
+                        <input id="newsletter_email" name="Email" type="email" placeholder="Email" required="required" data-error="Valid email is required.">
+                        <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">Đăng kí</button>
+                    </div>
+                }
+            </div>
+            <div class="col-md-6">
+
+               <img src="~/Content/assets/images/logoFull-removebg-preview.png" />
+            </div>
+        </div>
+    </div>
+</div>

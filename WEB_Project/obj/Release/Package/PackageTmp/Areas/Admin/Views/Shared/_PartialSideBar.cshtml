@@ -1,0 +1,221 @@
+﻿  <!-- Sidebar -->
+<div class="sidebar " @*style="background-color: #d1e4f5"*@>
+    <!-- Sidebar user (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="~/Content/clients/dist/img/AVT_160x160.jpg" style="width:44px" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="#" class="d-block"><strong style="font-size:large"> Hi! @User.Identity.Name</strong></a>
+        </div>
+    </div>
+
+
+    <link href="~/Content/assets/styles/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet" />
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+            <li style=" border-radius: 5px;" class="nav-item">
+                <a href="/admin/home" class="nav-link tẽ">
+                    <i style="color:aliceblue" class="nav-icon fas fa-home "></i>
+                    <strong style="color:aliceblue">
+                        Home
+                        @*<i class="right fas fa-angle-left"></i>*@
+                    </strong>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a href="/admin/Category" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Quản lý danh mục
+                        @*<i class="right fas fa-angle-left"></i>*@
+                    </p>
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-laptop "></i>
+                    <p>
+                        Quản lý mặt hàng
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li style="background-color:#475b6a;border-radius:5px" class="nav-item">
+                        <a href="/admin/productcategory" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>Danh mục mặt hàng</p>
+                        </a>
+                    </li>
+                    <li style="background-color:#475b6a;border-radius:5px" class="nav-item">
+                        <a href="/admin/products" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>Mặt hàng</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/order" class="nav-link">
+                    @*<i class="nav-icon fas fa-th"></i>*@
+                    <i class="nav-icon fas fa-fax "></i>
+                    <p>
+
+                        Quản lý hóa đơn
+                        @*<span class="right badge badge-danger">New</span>*@
+                    </p>
+                </a>
+            </li>
+  
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas  fa-user-plus"></i>
+                    <p>
+                        Quản lý khách hàng
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item" style="background-color: #475b6a; border-radius: 5px" class="nav-item">
+                        <a href="/admin/customer" class="nav-link">
+                            @*<i class="nav-icon fas fa-th"></i>*@
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>
+                                Khách hàng
+                            </p>
+                        </a>
+                    </li>
+                    <li style="background-color: #475b6a; border-radius: 5px" class="nav-item">
+                        <a href="/admin/subscribe" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>
+                                Đăng kí thông báo
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas  fa-user-circle"></i>
+                    <p>
+                        Quản lý tài khoản
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li style="background-color:#475b6a;border-radius:5px" class="nav-item">
+                        <a href="/admin/role" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>
+                                Quyền
+                            </p>
+                        </a>
+                    </li>
+                    <li style="background-color: #475b6a; border-radius: 5px" class="nav-item">
+                        <a href="/admin/account" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>
+                                Tài khoản
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-newspaper"></i>
+                    <p>
+                        Quản lý bài viết
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li style="background-color: #475b6a; border-radius: 5px;" class="nav-item">
+                        <a href="/admin/news" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>
+                                Tin tức
+                                @*<span class="right badge badge-danger">New</span>*@
+                            </p>
+                        </a>
+                    </li>
+                    <li style="background-color: #475b6a; border-radius: 5px " class="nav-item">
+                        <a href="/admin/posts" class="nav-link">
+                            <i class="nav-icon fas fa-location-arrow"></i>
+                            <p>
+                                Bài viết
+                                @*<span class="right badge badge-danger">New</span>*@
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/provider" class="nav-link">
+                    <i class="nav-icon fas fa-address-book  "></i>
+                    <p>
+                        Nhà cung cấp
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/Thongke" class="nav-link">
+                    <i class="nav-icon fas fa-area-chart "></i>
+                    <p>
+                        Thống kê & Báo cáo
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="~/BACKUP_RESTORE/Backup_Restore.aspx" class="nav-link">
+                    <i class="nav-icon fas fa-cloud-download "></i>
+                    <p>
+                        Sao lưu & Phục hồi
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/settingsystem" class="nav-link">
+                    <i class="nav-icon fas fa-cog"></i>
+                    <p>
+                        Cài đặt
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logOffForm').submit()" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out"></i>
+                    <p>
+                        Đăng xuất
+                        @*<span class="right badge badge-danger">New</span>*@
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->
+
+@if (Request.IsAuthenticated)
+{
+<div style="display:none">
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id = "logOffForm" }))
+    {
+@Html.AntiForgeryToken()}
+</div>}

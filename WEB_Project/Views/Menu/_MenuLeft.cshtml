@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WEB_Project.Models.EF.ProductCategory>
+
+@if (Model != null && Model.Any())
+{
+    <ul class="sidebar_categories">
+        @foreach (var item in Model)
+        {
+            if (ViewBag.CateId == item.ProductCategoryID)
+            {
+                <li class="active"><a href="/danh-muc-san-pham/@item.Alias-@(item.ProductCategoryID)"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@item.ProductCategoryName</a></li>
+            }
+            else
+                {
+                    <li><a href="/danh-muc-san-pham/@item.Alias-@(item.ProductCategoryID)">@item.ProductCategoryName</a></li>
+                }
+        }
+
+    </ul>
+}

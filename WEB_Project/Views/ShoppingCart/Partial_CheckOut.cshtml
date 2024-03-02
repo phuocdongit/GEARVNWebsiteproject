@@ -1,0 +1,69 @@
+﻿@model WEB_Project.Models.OrderViewModel
+@{
+    if (ViewBag.User != null)
+    {
+        var user = (WEB_Project.Models.ApplicationUser)ViewBag.User;
+
+    }
+}
+@using (Ajax.BeginForm("CheckOut", "Shoppingcart", new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "load_data",
+    OnComplete = "OnSuccessCO",
+    OnFailure = "OnFailure"
+
+}, new { @Id = "myForm" }))
+{
+    <script>
+        function OnSuccessCO() {
+            location.href = "/ShoppingCart/CheckOutSuccess";
+        }
+        function OnFailure() {
+
+        }
+    </script>
+    @Html.AntiForgeryToken()
+    if (!Request.IsAuthenticated)
+    {
+        <div class="form-group">
+            <label>Họ tên khách hàng</label>
+            <input type="text" name="CustomerName" required class="form-control" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" name="Phone" required class="form-control" autocomplete="off" />
+        </div>
+
+    }
+    else
+    {
+        var user = (WEB_Project.Models.ApplicationUser)ViewBag.User;
+        <div class="form-group">
+            <label>Họ tên khách hàng</label>
+            <input type="text" name="CustomerName" value="@user.FullName" required class="form-control" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" name="Phone" value="@user.Phone" required class="form-control" autocomplete="off" />
+        </div>
+    }
+    <div class="form-group">
+        <label>Địa chỉ</label>
+        <input type="text" name="Address" required class="form-control" autocomplete="off" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="Email" class="form-control" autocomplete="on" />
+    </div>
+    <div class="form-group">
+        <label>Phương thức thanh toán</label>
+        <select class="form-control" name="TypePayment">
+            <option value="1" selected>Thanh toán khi nhận hàng</option>
+            <option value="2">Chuyển khoản ngân hàng</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block primary-btn order-submit">Đặt hàng</button>
+    </div>
+}

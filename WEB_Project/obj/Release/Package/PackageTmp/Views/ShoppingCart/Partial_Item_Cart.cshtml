@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WEB_Project.Models.ShoppingCartItem>
+@using WEB_Project.Common
+
+
+<style>
+    .fixed-height-row {
+        height: 90px; /* Đặt chiều cao cố định cho các hàng */
+    }
+
+    .fixed-width {
+        max-width: 400px; /* Điều chỉnh chiều rộng tối đa của cột */
+        white-space: normal; /* Cho phép xuống dòng tự động */
+        word-wrap: break-word; /* Tự động ngắt dòng khi cần thiết */
+    }
+   
+</style>
+
+<table class="table">
+    <tr class="text">
+        <th style="text-align:center">STT</th>
+        <th width="100">Hình ảnh</th>
+        <th class="fixed-width">Tên mặt hàng</th>
+        <th width="150">Danh mục</th>
+        <th width="100">Giá</th>
+        <th width="100" style="text-align:center">Số lượng</th>
+        <th width="130px">Thành tiền</th>
+        <th width="180px"></th>
+    </tr>
+    @if (Model != null && Model.Any())
+    {
+        var i = 0;
+        var tongtien = decimal.Zero;
+        foreach (var item in Model)
+        {
+            tongtien += item.TotalPrice;
+            <tr id="trow_@item.ProductId" class="fixed-height-row">
+                <td class="stt-column" style="text-align:center">@(i+1)</td>
+                <td><img src="@item.ProductImg" width="60" /></td>
+                <td class="fixed-width" style="vertical-align: central">
+                    <a href="/chi-tiet/@item.Alias-p@(item.ProductId)">
+                        @item.ProductName
+                    </a>
+                </td>
+                <td>@item.CategoryName</td>
+                <td>@Common.FormatNumber(item.Price, 0)</td>
+                <td> <input  type="number" id="Quantity_@item.ProductId"   value="@item.Quantity" style="text-align:center; width:65px;" /></td>
+                <th>@Common.FormatNumber(item.TotalPrice, 2)</th>
+                <td>
+                    <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                    <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Refresh</a>
+                </td>
+            </tr>
+            i++;
+        }
+        <tr>
+
+            <th colspan="6" class="text-right">Tổng tiền:</th>
+            <th class="text-center"> @Common.FormatNumber(tongtien, 0)</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td colspan="8" class="text-right"> </td>
+        </tr>
+        <tr >
+
+            <td colspan="7" class="text-right" >
+                <a href="#" class="btn btn btn-danger btnDeleteAll">Xóa hết</a>
+               
+            </td>
+            <td > <a href="/thanh-toan" class="btn btn btn-primary">Thanh toán</a></td>
+        </tr>
+      
+
+    }
+    else
+    {
+        <tr>
+            <td colspan="8" style="font-size:16px" class="text-left">Không có mặt hàng nào. Vui lòng quay lại <a href="/shop">cửa hàng</a> để mua hàng</td>
+        </tr>
+    }
+</table>

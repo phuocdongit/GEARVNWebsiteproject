@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MatHang" targetNamespace="http://tempuri.org/MatHang.xsd" xmlns:mstns="http://tempuri.org/MatHang.xsd" xmlns="http://tempuri.org/MatHang.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MatHang" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MatHang" msprop:Generator_UserDSName="MatHang">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MatHang" msprop:Generator_TableClassName="MatHangDataTable" msprop:Generator_TableVarName="tableMatHang" msprop:Generator_TablePropName="_MatHang" msprop:Generator_RowDeletingName="MatHangRowDeleting" msprop:Generator_RowChangingName="MatHangRowChanging" msprop:Generator_RowEvHandlerName="MatHangRowChangeEventHandler" msprop:Generator_RowDeletedName="MatHangRowDeleted" msprop:Generator_UserTableName="MatHang" msprop:Generator_RowChangedName="MatHangRowChanged" msprop:Generator_RowEvArgName="MatHangRowChangeEvent" msprop:Generator_RowClassName="MatHangRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaMH" msprop:Generator_ColumnVarNameInTable="columnMaMH" msprop:Generator_ColumnPropNameInRow="MaMH" msprop:Generator_ColumnPropNameInTable="MaMHColumn" msprop:Generator_UserColumnName="MaMH" type="xs:string" minOccurs="0" />
+              <xs:element name="TenMatHang" msprop:Generator_ColumnVarNameInTable="columnTenMatHang" msprop:Generator_ColumnPropNameInRow="TenMatHang" msprop:Generator_ColumnPropNameInTable="TenMatHangColumn" msprop:Generator_UserColumnName="TenMatHang" type="xs:string" minOccurs="0" />
+              <xs:element name="NgayBan" msprop:Generator_ColumnVarNameInTable="columnNgayBan" msprop:Generator_ColumnPropNameInRow="NgayBan" msprop:Generator_ColumnPropNameInTable="NgayBanColumn" msprop:Generator_UserColumnName="NgayBan" type="xs:string" minOccurs="0" />
+              <xs:element name="NhaCungCap" msprop:Generator_ColumnVarNameInTable="columnNhaCungCap" msprop:Generator_ColumnPropNameInRow="NhaCungCap" msprop:Generator_ColumnPropNameInTable="NhaCungCapColumn" msprop:Generator_UserColumnName="NhaCungCap" type="xs:string" minOccurs="0" />
+              <xs:element name="LoiNhuan" msprop:Generator_ColumnVarNameInTable="columnLoiNhuan" msprop:Generator_ColumnPropNameInRow="LoiNhuan" msprop:Generator_ColumnPropNameInTable="LoiNhuanColumn" msprop:Generator_UserColumnName="LoiNhuan" type="xs:string" minOccurs="0" />
+              <xs:element name="LuotXem" msprop:Generator_ColumnVarNameInTable="columnLuotXem" msprop:Generator_ColumnPropNameInRow="LuotXem" msprop:Generator_ColumnPropNameInTable="LuotXemColumn" msprop:Generator_UserColumnName="LuotXem" type="xs:string" minOccurs="0" />
+              <xs:element name="Soluong" msprop:Generator_ColumnVarNameInTable="columnSoluong" msprop:Generator_ColumnPropNameInRow="Soluong" msprop:Generator_ColumnPropNameInTable="SoluongColumn" msprop:Generator_UserColumnName="Soluong" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

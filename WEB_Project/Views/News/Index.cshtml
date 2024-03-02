@@ -1,0 +1,102 @@
+﻿@model PagedList.PagedList<WEB_Project.Models.EF.News>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/contact_responsive.css">
+<!-- Main CSS File -->
+@*<link rel="stylesheet" href="assets/css/style.css">*@
+<!-- Slider -->
+@*<style>
+    .news_section_container {
+        margin-top: 180px;
+    }
+
+    .row-item-new {
+        margin-bottom: 20px;
+    }
+
+    .title-news {
+        font-size: 24px;
+        border-bottom: 1px solid;
+        padding: 15px 0;
+        margin-bottom: 25px;
+    }
+
+    .img-box img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>*@
+<div class="container contact_container">
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Breadcrumbs -->
+                    <div class="breadcrumbs d-flex flex-row align-items-center">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Tin tức</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <article class="entry entry-list">
+                                <div class="row align-items-center">
+
+                                    <div class="col-md-5">
+                                        <figure class="entry-media">
+                                            <a href="/@item.Alias-n@(item.NewId)" title="@item.Title"><img style=" display: block; max-width: 100%; height: auto;" src="@item.Image" alt="image desc"></a>
+                                        </figure><!-- End .entry-media -->
+                                    </div><!-- End .col-md-5 -->
+
+                                    <div class="col-md-7">
+                                        <div class="entry-body">
+                                            <div class="entry-meta">
+                                            
+                                                <span class="meta-separator">|</span>
+                                                <a href="#">@item.CreatedDate</a>
+                                                @*<span class="meta-separator">|</span>
+                                                    <a href="#">2 Comments</a>*@
+                                            </div><!-- End .entry-meta -->
+
+                                            <h2 class="entry-title" style=" font-family: 'Roboto', sans-serif;">
+                                                <a style="color: #323232; " href="/@item.Alias-n@(item.NewId)" title="@item.Title">@item.Title</a>
+                                            </h2><!-- End .entry-title -->
+
+                                            <div class="entry-cats">
+                                                
+                                            </div><!-- End .entry-cats -->
+                                            <div class="entry-content">
+                                                <p>@item.Description </p>
+                                                <a href="/@item.Alias-n@(item.NewId)" title="@item.Title" class="read-more">Continue Reading</a>
+                                            </div><!-- End .entry-content -->
+                                        </div><!-- End .entry-body -->
+                                    </div><!-- End .col-md-7 -->
+                                </div><!-- End .row -->
+                            </article><!-- End .entry -->
+
+                        }
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4 pagination ">
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>

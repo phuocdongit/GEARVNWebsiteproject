@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WEB_Project.Models.ShoppingCartItem>
+@using System.Collections.Generic;
+@using WEB_Project.Common
+
+
+
+<div class="col-md-5 order-details">
+    <div class="section-title text-center">
+        <h4 class="title" style=" font-family: 'Roboto', sans-serif; ">CHI TIẾT ĐƠN HÀNG</h4>
+    </div>
+    <div class="order-summary">
+        <div class="order-col">
+            <div><strong style=" font-family: 'Roboto', sans-serif; font-size:16px">Mặt hàng    </strong></div>
+            <div><strong style=" font-family: 'Roboto', sans-serif; font-size:16px">Tổng tiền</strong></div>
+        </div>
+        <hr />
+        @if (Model != null && Model.Any())
+        {
+            var tongtien = decimal.Zero;
+            <div>
+                @foreach (var item in Model)
+                {
+                    tongtien += item.TotalPrice;
+                    <div class="order-products">
+                        <div class="order-col">
+                            <div><span style="color:red; font-weight:bold">@item.Quantity</span> x @item.ProductName</div>
+                            <div>@Common.FormatNumber(item.Price, 0)</div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="order-col">
+                <div>Shiping</div>
+                <div><strong>FREE</strong></div>
+            </div>
+            <hr />
+            <div class="order-col">
+                <div><strong style=" font-family: 'Roboto', sans-serif; font-size:18px">Tổng tiền</strong></div>
+                <div><strong class="order-total">@Common.FormatNumber(tongtien, 0)</strong></div>
+            </div>
+
+        }
+    </div>
+</div>
+

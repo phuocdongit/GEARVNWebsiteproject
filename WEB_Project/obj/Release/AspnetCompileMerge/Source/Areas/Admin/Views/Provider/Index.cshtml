@@ -1,0 +1,229 @@
+﻿@model PagedList.PagedList<WEB_Project.Models.EF.Provider>
+@using PagedList.Mvc;
+@using PagedList;
+
+@*@model IEnumerable<WEB_Project.Models.EF.Provider>*@
+@{
+    ViewBag.Title = "Nhà cung cấp";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; ;
+}
+
+@section naviheader{
+    @*Left navbar links*@
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/provider" class="nav-link">Nhà cung cấp</a>
+        </li>
+    </ul>
+}
+ @*Content Header (Page header)*@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h3>Danh sách Nhà cung cấp</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div> 
+</section>
+
+ @*Main content*@
+<section class="content">
+
+    @*Default box*@
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title</h3>
+
+            <div class="card-tools">
+                <a href="/admin/provider/create" class="btn btn-primary">Thêm mới</a>
+              
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    @using (Html.BeginForm("Index", "Provider", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("Searchtext", null, new { @class = "form-control", @placeholder = "Nhập tên hoặc số điện thoại nhà cung cấp" })
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+                
+                  
+                    <div class="col-6" style="text-align:right;">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                
+                </div>
+              
+                <style>
+                    .title-column {
+                        white-space: nowrap; /* Ngăn cột bị ngắt dòng */
+                        overflow: hidden; /* Ẩn phần vượt quá kích thước */
+                        text-overflow: ellipsis; /* Thêm dấu "..." */
+                        max-width: 400px; /* Điều chỉnh chiều rộng tối đa của cột */
+                    }
+
+                    .center-text {
+                        text-align: center; /* Căn giữa văn bản trong cột */
+                    }
+                </style>
+
+            </div>
+            <table class="table table-hover" width="1000px">
+                <thead>
+                    <tr>
+                        <th class="center-text">STT</th>
+                        <th>Mã NCC</th>
+                        <th>Tên nhà cung cấp</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Chỉnh sửa</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+
+                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                        foreach (var item in Model)
+                        {
+
+                            <tr id="trow_@item.ProID">
+                         
+                                <td class="center-text stt-column">@i</td>
+                                <td>@item.ProID</td>
+                                <td>@item.ProName</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Address</td>
+
+                                <td>
+                                    <a href="/admin/provider/edit/@item.ProID" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/provider/delete/@item.ProID" @*data-id="@item.ProID"*@ class="btn btn-sm btn-danger @*btnDelete*@">Xóa</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td></td>
+                            <td colspan="6">Không có bản ghi nào!!!</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+          
+
+        </div>
+        @*//.card-body*@
+        <div class="card-footer">
+
+        </div>
+        @*/.card-footer*@
+    </div>
+    @*/.card*@
+
+</section>
+ @*/.content*@
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '#BtnDeleteAll', function (e) {
+                e.preventDefault();
+                var str = "";
+                var checkbox = $(this).parents('.card').find('tr td input:checkbox');
+                var i = 0;
+                checkbox.each(function () {
+                    if (this.checked) {
+                        var _id = $(this).val();
+                        if (i === 0) {
+                            ;
+                        } else {
+                            str += "," + _id;
+                        }
+                        i++;
+                    } else {
+                        checkbox.attr('selected', '');
+                    }
+                });
+                if (str.length > 0) {
+                    var conf = confirm('Bạn có muốn xóa các bản ghi này hay không?');
+                    if (conf === true) {
+                        $.ajax({
+                            url: '/admin/provider/deleteAll',
+                            type: 'POST',
+                            data: { ids: str },
+                            success: function (rs) {
+                                if (rs.success) {
+                                    location.reload();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            $('body').on('change', '#SelectAll', function () {
+                var checkStatus = this.checked;
+                var checkbox = $(this).parents('.card-body').find('tr td input:checkbox');
+                checkbox.each(function () {
+                    this.checked = checkStatus;
+                    if (this.checked) {
+                        checkbox.attr('selected', 'checked');
+                    } else {
+                        checkbox.attr('selected', '');
+                    }
+                });
+            });
+            //$('body').on('click', '.btnDelete', function () {
+            //    var id = $(this).data("id");
+            //    var conf = confirm('Bạn có muốn xóa bản ghi này không?');
+            //    if (conf === true) {
+            //        $.ajax({
+            //            url: '/admin/provider/delete',
+            //            type: 'POST',
+            //            data: { id: id },
+            //            success: function (rs) {
+            //                if (rs.success) {
+            //                    $('#trow_' + id).remove();
+            //                    updateSTT();
+            //                }
+            //            }
+            //        });
+            //    }
+            //});
+
+
+            //function updateSTT() {
+            //    // Lặp qua các cột số thứ tự và cập nhật lại số thứ tự
+            //    $('.stt-column').each(function (index) {
+            //        $(this).text(index + 1);
+            //    });
+            //}
+
+       
+        });
+    </script>
+}

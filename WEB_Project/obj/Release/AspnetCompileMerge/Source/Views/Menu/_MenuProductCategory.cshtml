@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WEB_Project.Models.EF.ProductCategory>
+
+@if (Model != null && Model.Any())
+{
+    <div class="col text-center">
+        <div class="section_title new_arrivals_title">
+            <h2 style=" font-family: 'Roboto', sans-serif;">Danh mục mặt hàng</h2>
+        </div>
+    </div>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="banner_item align-items-center" style="background-image: url(@item.HomeAvatar)">
+                            <div class="banner_category">
+                                <a href="/danh-muc-san-pham/@item.Alias-@item.ProductCategoryID">@item.ProductCategoryName</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+}
